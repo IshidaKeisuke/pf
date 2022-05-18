@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import './App.css';
-import InputArticle from './components/Articles/ArticleForm';
+import { BrowserRouter, Route } from 'react-router-dom'
+import ArticleForm from './components/Articles/ArticleForm';
 
 function App() {
   // フォームに入力されている値
-  const [articletext, setarticletext] = useState('')
+  const [article, setarticle] = useState('')
 
   // 未完了のタスク
   const [unfinishedarticles, setunfinishedarticle] = useState([])
@@ -27,7 +28,11 @@ function App() {
   }
   return (
     <div classname="App">
-      <InputArticle articletext={articletext} onChange={onChangeArticleText} onClick={addArticle} />
+      <BrowserRouter>
+        <Route path="/articles">
+          <ArticleForm articletext={articletext} onChange={onChangeArticleText} onClick={addArticle} />
+        </Route>
+      </BrowserRouter>
     </div>
   );
 }
